@@ -5,6 +5,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 interface User {
   id: string;
   email: string;
@@ -36,10 +38,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/login",
-        { email, password }
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+        email,
+        password,
+      });
       const userData = response.data.user;
       setUser(userData);
       Cookies.set("user", JSON.stringify(userData), { expires: 7 });
@@ -52,10 +54,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signup = async (email: string, password: string) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/signup",
-        { email, password }
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
+        email,
+        password,
+      });
       const userData = response.data.user;
       setUser(userData);
       Cookies.set("user", JSON.stringify(userData), { expires: 7 });
@@ -75,7 +77,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/auth/logout");
+      await axios.post(`${API_BASE_URL}/api/auth/logout`);
       setUser(null);
       Cookies.remove("user");
     } catch (error) {
@@ -101,5 +103,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-// Remove the default export

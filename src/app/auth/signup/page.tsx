@@ -52,13 +52,6 @@ export default function SignUpPage() {
           >
             Login
           </Button>
-          <Button
-            variant="outline"
-            className="text-black"
-            onClick={() => router.push("/auth/signup")}
-          >
-            Signup
-          </Button>
         </div>
       </header>
       <div className="flex-grow flex justify-center items-center">

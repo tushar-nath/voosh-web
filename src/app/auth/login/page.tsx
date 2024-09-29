@@ -42,13 +42,6 @@ export default function LoginPage() {
         <div>
           <Button
             variant="outline"
-            className="text-black mr-2"
-            onClick={() => router.push("/auth/login")}
-          >
-            Login
-          </Button>
-          <Button
-            variant="outline"
             className="text-black"
             onClick={() => router.push("/auth/signup")}
           >
